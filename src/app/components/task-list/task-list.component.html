@@ -1,0 +1,29 @@
+<!-- task-list.component.html -->
+<div class="task-list">
+  <h2>Task List</h2>
+  
+  <!-- Display message if no tasks -->
+  <div *ngIf="tasks.length === 0" class="no-tasks">
+    <p>No tasks available. Add some tasks to get started!</p>
+  </div>
+
+  <!-- Loop through tasks using *ngFor -->
+  <div *ngFor="let task of tasks" class="task-item" [class.completed]="task.completed">
+    <div class="task-header">
+      <h3>{{ task.title }}</h3>
+      <span class="priority" [ngClass]="'priority-' + task.priority">
+        {{ task.priority | uppercase }}
+      </span>
+    </div>
+    
+    <p class="task-description">{{ task.description }}</p>
+    
+    <div class="task-actions">
+      <button 
+        (click)="onTaskToggled(task.id)" 
+        [ngClass]="task.completed ? 'btn-undo' : 'btn-complete'">
+        {{ task.completed ? 'Mark Incomplete' : 'Mark Complete' }}
+      </button>
+    </div>
+  </div>
+</div>

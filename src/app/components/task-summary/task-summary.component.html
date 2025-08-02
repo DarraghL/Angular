@@ -1,0 +1,42 @@
+<!-- task-summary.component.html -->
+<div class="task-summary">
+  <h2>Task Summary</h2>
+  
+  <!-- Flexbox layout for stats -->
+  <div class="summary-stats">
+    <div class="stat">
+      <span class="stat-number">{{ totalTasks }}</span>
+      <span class="stat-label">Total Tasks</span>
+    </div>
+    
+    <div class="stat completed">
+      <span class="stat-number">{{ completedTasks }}</span>
+      <span class="stat-label">Completed</span>
+    </div>
+    
+    <div class="stat pending">
+      <span class="stat-number">{{ pendingTasks }}</span>
+      <span class="stat-label">Pending</span>
+    </div>
+    
+    <div class="stat high-priority">
+      <span class="stat-number">{{ highPriorityTasks }}</span>
+      <span class="stat-label">High Priority</span>
+    </div>
+  </div>
+
+  <!-- Progress bar -->
+  <div class="progress-container">
+    <div class="progress-bar" [style.width]="progressBarWidth"></div>
+  </div>
+  
+  <p class="progress-text">{{ completionPercentage }}% Complete</p>
+  
+  <!-- Status message -->
+  <div class="status-message" [ngClass]="{
+    'all-complete': completedTasks === totalTasks && totalTasks > 0,
+    'has-high-priority': highPriorityTasks > 0
+  }">
+    <p>{{ statusMessage }}</p>
+  </div>
+</div>
